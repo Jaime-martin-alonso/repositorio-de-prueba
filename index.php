@@ -1,3 +1,28 @@
+<?php
+// Conexión a la base de datos (ajusta los valores según tu configuración)
+$host = "localhost";
+$dbname = "tu_base_de_datos";
+$user = "tu_usuario";
+$pass = "tu_contraseña";
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Ejecutar consulta
+    $stmt = $pdo->query("SELECT * FROM persona");
+
+    // Obtener resultados en un array asociativo
+    $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Imprimir el array asociativo
+    print_r($resultados);
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+?>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
